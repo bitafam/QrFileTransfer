@@ -1,0 +1,10 @@
+{
+  "name": "انتقال فایل با بارکد QR",
+  "description": "برنامه انتقال سریع و امن فایل بین دو دستگاه با تولید بارکد/QR و اسکن آن با دوربین",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
