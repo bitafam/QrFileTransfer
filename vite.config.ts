@@ -6,10 +6,19 @@ import {apiPlugin} from './server/apiPlugin';
 
 export default defineConfig(() => {
   return {
+    root: path.resolve(__dirname, '.'),
+    base: './',
     plugins: [react(), tailwindcss(), apiPlugin()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
+      },
+    },
+    build: {
+      outDir: 'dist',
+      emptyOutDir: true,
+      rollupOptions: {
+        input: path.resolve(__dirname, 'index.html'),
       },
     },
     server: {
