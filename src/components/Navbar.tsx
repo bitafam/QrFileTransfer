@@ -3,11 +3,10 @@ import { TransferMode } from '../types/transfer';
 import {
   Send,
   Camera,
-  QrCode,
   History,
   HelpCircle,
   Zap,
-  CheckCircle2,
+  WifiOff,
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -24,96 +23,82 @@ export const Navbar: React.FC<NavbarProps> = ({
   historyCount,
 }) => {
   return (
-    <header className="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 text-white shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header className="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 text-white shadow-lg">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 gap-2">
           {/* Logo & Title */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 via-indigo-500 to-purple-600 p-0.5 shadow-md shadow-sky-500/20">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-sky-400 p-0.5 shadow-md shadow-indigo-500/20 shrink-0">
               <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                <QrCode className="w-5 h-5 text-sky-400" />
+                <WifiOff className="w-5 h-5 text-indigo-400" />
               </div>
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-lg font-bold bg-gradient-to-r from-sky-400 via-indigo-300 to-white bg-clip-text text-transparent">
+              <div className="flex items-center gap-1.5">
+                <h1 className="text-base sm:text-lg font-bold bg-gradient-to-r from-indigo-300 via-purple-200 to-white bg-clip-text text-transparent truncate">
                   فایل‌رسان بارکدی
                 </h1>
-                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-sky-500/10 text-sky-400 border border-sky-500/20">
-                  <Zap className="w-3 h-3 ml-1 text-sky-400" />
-                  آنی و امن
+                <span className="hidden xs:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                  آفلاین
                 </span>
               </div>
-              <p className="text-xs text-slate-400 hidden sm:block">
-                انتقال سریع فایل بین دو دستگاه با اسکن بارکد
+              <p className="text-[11px] text-slate-400 hidden md:block">
+                انتقال مستقیم فایل بین گوشی‌ها بدون اینترنت و سرور
               </p>
             </div>
           </div>
 
           {/* Navigation Tabs */}
-          <nav className="flex items-center gap-1 bg-slate-950/80 p-1 rounded-xl border border-slate-800">
+          <nav className="flex items-center gap-1 bg-slate-950 p-1 rounded-2xl border border-slate-800">
             <button
               onClick={() => onModeChange('sender')}
-              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
+              className={`flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                 currentMode === 'sender'
-                  ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
-              }`}
-            >
-              <Send className="w-4 h-4" />
-              <span>ارسال فایل</span>
-            </button>
-
-            <button
-              onClick={() => onModeChange('receiver')}
-              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
-                currentMode === 'receiver'
-                  ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
-              }`}
-            >
-              <Camera className="w-4 h-4" />
-              <span>اسکن و دریافت</span>
-            </button>
-
-            <button
-              onClick={() => onModeChange('airgapped')}
-              className={`hidden md:flex items-center gap-2 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
-                currentMode === 'airgapped'
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
-              <QrCode className="w-4 h-4 text-indigo-400" />
-              <span>آفلاین (Air-Gapped)</span>
+              <Send className="w-3.5 h-3.5" />
+              <span>ارسال</span>
+            </button>
+
+            <button
+              onClick={() => onModeChange('receiver')}
+              className={`flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                currentMode === 'receiver'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+              }`}
+            >
+              <Camera className="w-3.5 h-3.5" />
+              <span>دریافت</span>
             </button>
 
             <button
               onClick={() => onModeChange('history')}
-              className={`relative flex items-center gap-2 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
+              className={`relative flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-medium transition-all ${
                 currentMode === 'history'
-                  ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
-              <History className="w-4 h-4" />
-              <span className="hidden sm:inline">تاریخچه</span>
+              <History className="w-3.5 h-3.5" />
+              <span className="hidden xs:inline">تاریخچه</span>
               {historyCount > 0 && (
-                <span className="w-4 h-4 rounded-full bg-sky-500 text-slate-950 text-[10px] font-bold flex items-center justify-center">
+                <span className="w-4 h-4 rounded-full bg-indigo-500 text-slate-950 text-[10px] font-bold flex items-center justify-center">
                   {historyCount}
                 </span>
               )}
             </button>
           </nav>
 
-          {/* Help & Guide Button */}
+          {/* Help Button */}
           <button
             onClick={onOpenGuide}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs sm:text-sm font-medium transition-all"
-            title="راهنمای کار با برنامه"
+            className="p-2 sm:px-3 sm:py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs font-medium transition-all shrink-0"
+            title="راهنما"
           >
-            <HelpCircle className="w-4 h-4 text-sky-400" />
-            <span className="hidden md:inline">راهنما</span>
+            <HelpCircle className="w-4 h-4 text-indigo-400" />
           </button>
         </div>
       </div>

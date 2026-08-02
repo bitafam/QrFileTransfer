@@ -92,7 +92,7 @@ export const AirGappedView: React.FC<AirGappedViewProps> = ({ onAddHistory }) =>
         return;
       }
 
-      const generatedFrames = encodeFileToQRChunks(fileName, fileType, base64Data);
+      const { frames: generatedFrames } = await encodeFileToQRChunks(fileName, fileType, base64Data);
       setFrames(generatedFrames);
 
       // Render all frame images
